@@ -13,7 +13,7 @@ pipeline {
                 echo 'Hello world!' 
                 
                 // Run Maven on a Unix agent.
-                sh "mvn clean package"
+                sh "mvn clean test package"
             }
             
             post {
