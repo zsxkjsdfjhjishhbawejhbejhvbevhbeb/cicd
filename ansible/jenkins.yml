@@ -1,0 +1,33 @@
+- hosts: Jenkins
+  tasks:
+  - name: 'Install wget'
+    become: yes
+    apt:
+      name: wget
+      state: latest
+      update_cache: true
+  - name: 'Install Java'
+    become: yes
+    apt:
+      name: default-jre
+      state: latest
+      update_cache: true
+  - name: 'Add Jenkins pub key'
+    become: yes
+    apt_key:
+      url: https://pkg.jenkins.io/debian-stable/jenkins.io.key
+  - name: 'Add Jenkins repo'
+    become: yes
+    apt_repository:
+      repo: deb https://pkg.jenkins.io/debian-stable binary/
+  - name: 'Install Jenkins'
+    become: yes
+    apt:
+      name: jenkins
+      state: latest
+      update_cache: true
+  - name: 'Start Jenkins Service'
+    become: yes
+    service:
+      name: jenkins
+      state: started

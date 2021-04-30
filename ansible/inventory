@@ -1,0 +1,11 @@
+[Jenkins:vars]
+ansible_ssh_private_key_file=./demo.pem
+
+[Test:vars]
+ansible_ssh_private_key_file=./demo.pem
+
+[Jenkins]
+34.242.157.20
+
+[Test]
+34.240.154.208

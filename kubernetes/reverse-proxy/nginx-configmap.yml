@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-conf
+data:
+  nginx.conf: |
+    events {}
+    http {
+      server {
+        listen       80;
+        server_name  localhost;
+        location / {
+          proxy_pass http://frontend-service:80;
+        }
+
+        location /getAll {
+          proxy_pass http://backend-service:8080/getAll;
+        }
+
+        location /create {
+          proxy_pass http://backend-service:8080/create;
+        }
+
+        location /update {
+          proxy_pass http://backend-service:8080/update;
+        }
+      }
+    }

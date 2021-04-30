@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deploy
+  labels: 
+    app: frontend-deploy
+spec:
+  template: 
+    metadata:
+      labels:
+        app: helpqueue-frontend
+    spec: 
+      containers:
+      - name: frontend-container
+        image: schan69/helpqueue-frontend:latest
+        ports:
+        - containerPort: 80
+  replicas: 3
+  selector:
+    matchLabels:
+      app: helpqueue-frontend
